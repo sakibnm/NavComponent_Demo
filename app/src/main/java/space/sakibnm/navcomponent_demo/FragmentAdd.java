@@ -42,8 +42,12 @@ public class FragmentAdd extends Fragment {
         buttonBackToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("num1", firstInt);
+                bundle.putInt("num2", secondInt);
+
                 Navigation.findNavController(rootView)
-                        .navigate(R.id.action_fragmentAdd_to_fragmentHome);
+                        .navigate(R.id.action_fragmentAdd_to_fragmentHome, bundle);
             }
         });
 

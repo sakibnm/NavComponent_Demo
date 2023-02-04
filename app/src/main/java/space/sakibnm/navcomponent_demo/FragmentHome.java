@@ -18,6 +18,9 @@ public class FragmentHome extends Fragment {
     private Button buttonAdd, buttonMultiply;
     private int firstInt, secondInt;
 
+    //flag to keep track of if any arguments received.....
+    private Boolean gotArguments = false;
+
     public FragmentHome() {
         // Required empty public constructor
     }
@@ -25,8 +28,11 @@ public class FragmentHome extends Fragment {
         @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//            Checking if I get back integers from the add or multiply fragments...
         if (getArguments() != null) {
-
+            gotArguments = true;
+            firstInt = getArguments().getInt("num1");
+            secondInt = getArguments().getInt("num2");
         }
     }
 
@@ -40,6 +46,11 @@ public class FragmentHome extends Fragment {
         editTextSecondInt = rootView.findViewById(R.id.editTextSecondInt);
         buttonAdd = rootView.findViewById(R.id.buttonAdd);
         buttonMultiply = rootView.findViewById(R.id.buttonMultiply);
+
+        if(gotArguments){ //Check if got any arguments back...
+            editTextFirstInt.setText(firstInt+"");
+            editTextSecondInt.setText(secondInt+"");
+        }
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
